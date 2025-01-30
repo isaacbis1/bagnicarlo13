@@ -1,0 +1,189 @@
+/* Reset CSS di base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+#worker-form, #date-selector, #workers-list, #statistics {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#worker-form input, #date-selector select, #date-selector input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    width: 200px;
+    max-width: 90%;
+}
+
+#worker-form button, #date-selector button {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#worker-form button:hover, #date-selector button:hover {
+    background-color: #2980b9;
+}
+
+#workers-list ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#workers-list li {
+    background-color: #ecf0f1;
+    margin: 5px 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+#workers-list li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #bdc3c7;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #2980b9;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    background-color: #ecf0f1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+td:hover {
+    background-color: #d1ecf1;
+}
+
+td.working {
+    background-color: #27ae60;
+    color: white;
+}
+
+td.not-working {
+    background-color: #c0392b;
+    color: white;
+}
+
+/* Sezione Statistiche */
+#statistics .chart-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#statistics table {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#statistics th, #statistics td {
+    border: 1px solid #bdc3c7;
+    padding: 10px;
+}
+
+#statistics th {
+    background-color: #16a085;
+    color: white;
+}
+
+/* Media Queries per la Responsività */
+@media (max-width: 768px) {
+    #worker-form input, #date-selector select, #date-selector input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #workers-list ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #workers-list li {
+        width: 80%;
+        justify-content: center;
+    }
+
+    .chart-container, #statistics table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    #worker-form button, #date-selector button {
+        width: 100%;
+    }
+
+    #workers-list li {
+        flex-direction: column;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    .chart-container {
+        max-width: 100%;
+    }
+}
