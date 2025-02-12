@@ -1,4 +1,26 @@
 /***********************
+ *  DISABILITA TASTO DESTRO E SCORCIATOIE
+ ***********************/
+// Disabilita menu tasto destro
+document.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+});
+
+// Disabilita alcune scorciatoie classiche (F12, Ctrl+U, Ctrl+S, ecc.)
+document.addEventListener('keydown', (event) => {
+  if (
+    event.key === 'F12' ||                              // F12
+    (event.ctrlKey && event.shiftKey && event.key === 'I') || // CTRL+SHIFT+I
+    (event.ctrlKey && event.key === 'U') ||             // CTRL+U
+    (event.ctrlKey && event.key === 'S') ||             // CTRL+S
+    (event.ctrlKey && event.key === 'C')                // CTRL+C
+  ) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+/***********************
  *  CONFIGURAZIONE FIREBASE
  ***********************/
 const firebaseConfig = {
@@ -23,16 +45,219 @@ let currentUser = null;
 const adminUsername = "admin";
 const adminPassword = "passwordAdmin";
 
-// Hardcoded static users per 200 utenti (esempio abbreviato)
 const staticUsers = {
-  "admin": adminPassword,
-  "user001": "jcne",
-  "user002": "hoyw",
-  /* ... */
-  "user200": "drmf"
+  "admin": "passwordAdmin",
+  "user001": "pass001",
+  "user002": "pass002",
+  "user003": "pass003",
+  "user004": "pass004",
+  "user005": "pass005",
+  "user006": "pass006",
+  "user007": "pass007",
+  "user008": "pass008",
+  "user009": "pass009",
+  "user010": "pass010",
+  "user011": "pass011",
+  "user012": "pass012",
+  "user013": "pass013",
+  "user014": "pass014",
+  "user015": "pass015",
+  "user016": "pass016",
+  "user017": "pass017",
+  "user018": "pass018",
+  "user019": "pass019",
+  "user020": "pass020",
+  "user021": "pass021",
+  "user022": "pass022",
+  "user023": "pass023",
+  "user024": "pass024",
+  "user025": "pass025",
+  "user026": "pass026",
+  "user027": "pass027",
+  "user028": "pass028",
+  "user029": "pass029",
+  "user030": "pass030",
+  "user031": "pass031",
+  "user032": "pass032",
+  "user033": "pass033",
+  "user034": "pass034",
+  "user035": "pass035",
+  "user036": "pass036",
+  "user037": "pass037",
+  "user038": "pass038",
+  "user039": "pass039",
+  "user040": "pass040",
+  "user041": "pass041",
+  "user042": "pass042",
+  "user043": "pass043",
+  "user044": "pass044",
+  "user045": "pass045",
+  "user046": "pass046",
+  "user047": "pass047",
+  "user048": "pass048",
+  "user049": "pass049",
+  "user050": "pass050",
+  "user051": "pass051",
+  "user052": "pass052",
+  "user053": "pass053",
+  "user054": "pass054",
+  "user055": "pass055",
+  "user056": "pass056",
+  "user057": "pass057",
+  "user058": "pass058",
+  "user059": "pass059",
+  "user060": "pass060",
+  "user061": "pass061",
+  "user062": "pass062",
+  "user063": "pass063",
+  "user064": "pass064",
+  "user065": "pass065",
+  "user066": "pass066",
+  "user067": "pass067",
+  "user068": "pass068",
+  "user069": "pass069",
+  "user070": "pass070",
+  "user071": "pass071",
+  "user072": "pass072",
+  "user073": "pass073",
+  "user074": "pass074",
+  "user075": "pass075",
+  "user076": "pass076",
+  "user077": "pass077",
+  "user078": "pass078",
+  "user079": "pass079",
+  "user080": "pass080",
+  "user081": "pass081",
+  "user082": "pass082",
+  "user083": "pass083",
+  "user084": "pass084",
+  "user085": "pass085",
+  "user086": "pass086",
+  "user087": "pass087",
+  "user088": "pass088",
+  "user089": "pass089",
+  "user090": "pass090",
+  "user091": "pass091",
+  "user092": "pass092",
+  "user093": "pass093",
+  "user094": "pass094",
+  "user095": "pass095",
+  "user096": "pass096",
+  "user097": "pass097",
+  "user098": "pass098",
+  "user099": "pass099",
+  "user100": "pass100",
+  "user101": "pass101",
+  "user102": "pass102",
+  "user103": "pass103",
+  "user104": "pass104",
+  "user105": "pass105",
+  "user106": "pass106",
+  "user107": "pass107",
+  "user108": "pass108",
+  "user109": "pass109",
+  "user110": "pass110",
+  "user111": "pass111",
+  "user112": "pass112",
+  "user113": "pass113",
+  "user114": "pass114",
+  "user115": "pass115",
+  "user116": "pass116",
+  "user117": "pass117",
+  "user118": "pass118",
+  "user119": "pass119",
+  "user120": "pass120",
+  "user121": "pass121",
+  "user122": "pass122",
+  "user123": "pass123",
+  "user124": "pass124",
+  "user125": "pass125",
+  "user126": "pass126",
+  "user127": "pass127",
+  "user128": "pass128",
+  "user129": "pass129",
+  "user130": "pass130",
+  "user131": "pass131",
+  "user132": "pass132",
+  "user133": "pass133",
+  "user134": "pass134",
+  "user135": "pass135",
+  "user136": "pass136",
+  "user137": "pass137",
+  "user138": "pass138",
+  "user139": "pass139",
+  "user140": "pass140",
+  "user141": "pass141",
+  "user142": "pass142",
+  "user143": "pass143",
+  "user144": "pass144",
+  "user145": "pass145",
+  "user146": "pass146",
+  "user147": "pass147",
+  "user148": "pass148",
+  "user149": "pass149",
+  "user150": "pass150",
+  "user151": "pass151",
+  "user152": "pass152",
+  "user153": "pass153",
+  "user154": "pass154",
+  "user155": "pass155",
+  "user156": "pass156",
+  "user157": "pass157",
+  "user158": "pass158",
+  "user159": "pass159",
+  "user160": "pass160",
+  "user161": "pass161",
+  "user162": "pass162",
+  "user163": "pass163",
+  "user164": "pass164",
+  "user165": "pass165",
+  "user166": "pass166",
+  "user167": "pass167",
+  "user168": "pass168",
+  "user169": "pass169",
+  "user170": "pass170",
+  "user171": "pass171",
+  "user172": "pass172",
+  "user173": "pass173",
+  "user174": "pass174",
+  "user175": "pass175",
+  "user176": "pass176",
+  "user177": "pass177",
+  "user178": "pass178",
+  "user179": "pass179",
+  "user180": "pass180",
+  "user181": "pass181",
+  "user182": "pass182",
+  "user183": "pass183",
+  "user184": "pass184",
+  "user185": "pass185",
+  "user186": "pass186",
+  "user187": "pass187",
+  "user188": "pass188",
+  "user189": "pass189",
+  "user190": "pass190",
+  "user191": "pass191",
+  "user192": "pass192",
+  "user193": "pass193",
+  "user194": "pass194",
+  "user195": "pass195",
+  "user196": "pass196",
+  "user197": "pass197",
+  "user198": "pass198",
+  "user199": "pass199",
+  "user200": "pass200"
 };
 
-// Time slots
+for (let i = 1; i <= 200; i++) {
+  const userKey = `user${String(i).padStart(3, '0')}`;
+  const passKey = `pass${String(i).padStart(3, '0')}`;
+  staticUsers[userKey] = passKey;
+}
+
+/***********************
+ *  TIME SLOTS & RESERVATIONS
+ ***********************/
 const timeSlots = [
   "11:00", "11:45",
   "12:30", "13:15",
@@ -106,6 +331,7 @@ function authenticateUser(username) {
 
 function authenticateStaticUser(username, password) {
   if (staticUsers[username] && staticUsers[username] === password) {
+    // Controlliamo se l'utente è disabilitato in Firestore
     db.collection("users").doc(username).get().then(doc => {
       const disabled = doc.exists ? doc.data().disabled : false;
       if (disabled) {
@@ -245,14 +471,17 @@ function populateFieldSlots(fieldName) {
 
 function bookSlot(fieldName, slot) {
   const today = getTodayDate();
+  // Impedisce prenotazioni multiple in un solo giorno per i NON-admin
   if (currentUser !== adminUsername && userHasBookingToday()) {
     showNotification('Hai già effettuato una prenotazione per oggi.');
     return;
   }
+  // Controllo se slot è già prenotato
   if (reservations[fieldName][today][slot]) {
     showNotification('Questo slot è già prenotato.');
     return;
   }
+  // Salviamo la prenotazione su Firestore
   db.collection("users").doc(currentUser).get().then(doc => {
     const role = doc.exists ? doc.data().role : "user";
     saveReservationToFirestore(fieldName, today, slot, currentUser, role)
@@ -326,6 +555,7 @@ function populateCredentialsTable() {
     snapshot.forEach(doc => {
       const data = doc.data();
       const username = doc.id;
+      // Se c'è in staticUsers, lo prendiamo. Altrimenti "N/A"
       const password = staticUsers[username] || "N/A";
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -346,7 +576,7 @@ function populateCredentialsTable() {
 
 function toggleUserStatus(username, currentDisabled) {
   const newStatus = !currentDisabled;
-  db.collection("users").doc(username).update({ disabled: newStatus })
+  db.collection("users").doc(username).set({ disabled: newStatus }, { merge: true })
     .then(() => {
       populateCredentialsTable();
       showNotification(`Utente ${username} ${newStatus ? 'disabilitato' : 'attivato'}.`);
@@ -364,15 +594,12 @@ function loadAdminNotesRealtime() {
   db.collection("admin").doc("notes").onSnapshot(doc => {
     if (doc.exists) {
       const noteText = doc.data().text || "";
-      // Mostra il contenuto a tutti
       document.getElementById("notes-content").textContent = noteText;
 
-      // Se utente è admin, popola anche la textarea
       if (currentUser === adminUsername) {
         document.getElementById("admin-notes").value = noteText;
       }
     } else {
-      // Se non esiste, lo creiamo con testo vuoto
       db.collection("admin").doc("notes").set({ text: "" });
       document.getElementById("notes-content").textContent = "";
     }
@@ -396,7 +623,7 @@ function saveAdminNotes() {
 }
 
 /***********************
- *  SEZIONE IMMAGINI ADMIN (FINO A 10)
+ *  SEZIONE IMMAGINI ADMIN (max 10)
  ***********************/
 function loadAdminImagesRealtime() {
   db.collection("admin").doc("images").onSnapshot(doc => {
@@ -414,7 +641,6 @@ function loadAdminImagesRealtime() {
         const url = data[urlField] || "";
         const link = data[linkField] || "";
 
-        // Se c'è un URL, creiamo l'immagine
         if (url) {
           const a = document.createElement("a");
           a.href = link || "#";
