@@ -6,14 +6,16 @@
   <!-- Meta tag per abilitare la modalità a schermo intero su iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Prenotazione Campi</title>
+
   <!-- Font Awesome per le icone -->
-  <link 
-    rel="stylesheet" 
+  <link
+    rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pI3F2K73oUjM3yoAGlwE2Y6dc+ZNJMfLyXQThOqNpqKgUyfnBVFdQF6Kl9gWQheCH1E2V0GadNkm+jGdA1oAkg==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer" 
+    integrity="sha512-pI3F2K73oUjM3yoAGlwE2Y6dc+ZNJMfLyXQThOqNpqKgUyfnBVFdQF6Kl9gWQheCH1E2V0GadNkm+jGdA1oAkg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
   />
+
   <!-- Collega il file CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -42,7 +44,20 @@
       <a href="#" class="logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
       <h1>Prenotazione Campi</h1>
     </header>
+
     <main>
+      <!-- SEZIONE NOTE (Visibili a tutti, modificabili solo dall'admin) -->
+      <section class="notes-section" id="notes-section">
+        <h2>Note</h2>
+        <!-- Contenuto delle note, sempre visibile -->
+        <p id="notes-content"></p>
+        <!-- Textarea e pulsante visibili solo per l'admin (verranno nascosti via JS/CSS) -->
+        <textarea id="admin-notes" rows="5" placeholder="Scrivi qui le tue note..."></textarea>
+        <button id="save-notes-btn" onclick="saveAdminNotes()">
+          <i class="fas fa-save"></i> Salva Note
+        </button>
+      </section>
+
       <!-- Sezione Campi (Griglia 2x2) -->
       <div class="fields-container">
         <div class="field-box" id="field-Volley1">
@@ -79,16 +94,6 @@
           <tbody id="admin-table"></tbody>
         </table>
 
-        <!-- Sezione Note (solo Admin) -->
-        <div class="notes-container" id="notes-container">
-          <h2>Note (Visibili solo all'Admin)</h2>
-          <textarea id="admin-notes" rows="6" placeholder="Scrivi qui le tue note..."></textarea>
-          <br />
-          <button onclick="saveAdminNotes()">
-            <i class="fas fa-save"></i> Salva Note
-          </button>
-        </div>
-
         <h2>Gestione Utenti</h2>
         <table>
           <thead>
@@ -103,6 +108,7 @@
         </table>
       </div>
     </main>
+
     <footer>
       <p>© 2025 Prenotazione Campi - Tutti i diritti riservati</p>
     </footer>
