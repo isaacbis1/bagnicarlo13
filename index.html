@@ -1,160 +1,120 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Gestione Orari Lavorativi</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Inclusione di Chart.js tramite CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Meta tag per la responsività -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Firebase SDKs -->
-    <!-- Firebase App (required) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <!-- Firebase Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <!-- Firebase Analytics (opzionale) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Meta tag per abilitare la modalità a schermo intero su iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Prenotazione Campi</title>
+  <!-- Font Awesome per le icone -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pI3F2K73oUjM3yoAGlwE2Y6dc+ZNJMfLyXQThOqNpqKgUyfnBVFdQF6Kl9gWQheCH1E2V0GadNkm+jGdA1oAkg==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+  />
+  <!-- Collega il file CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Gestione Orari Lavorativi</h1>
 
-    <div id="worker-form">
-        <input type="text" id="worker-name" placeholder="Nome lavoratore">
-        <button id="add-worker">Aggiungi Lavoratore</button>
+  <!-- Sezione Login -->
+  <div id="login-area">
+    <div class="login-container">
+      <div class="login-form">
+        <h1>Benvenuto</h1>
+        <p>
+          Inserisci le tue credenziali per prenotare uno dei nostri campi.<br/>
+          Puoi prenotare <strong>un solo slot di 45 minuti</strong> al giorno (dalle 11:00 alle 21:00).<br/>
+          Potrai cancellare solo la tua prenotazione.
+        </p>
+        <input type="text" id="username" placeholder="Username" aria-label="Username">
+        <input type="password" id="password" placeholder="Password" aria-label="Password">
+        <button onclick="login()"><i class="fas fa-sign-in-alt"></i> Accedi</button>
+      </div>
     </div>
+  </div>
 
-    <div id="workers-list">
-        <h2>Lavoratori</h2>
-        <ul id="worker-ul">
-            <!-- Lista dei lavoratori verrà generata dinamicamente -->
-        </ul>
-    </div>
+  <!-- Sezione Applicazione -->
+  <div id="app-area">
+    <header>
+      <a href="#" class="logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      <h1>Prenotazione Campi</h1>
+    </header>
+    <main>
+      <!-- Sezione Campi (Griglia 2x2) -->
+      <div class="fields-container">
+        <div class="field-box" id="field-Volley1">
+          <h3>Volley1</h3>
+          <div class="slot-info" id="slots-Volley1"></div>
+        </div>
+        <div class="field-box" id="field-Volley2">
+          <h3>Volley2</h3>
+          <div class="slot-info" id="slots-Volley2"></div>
+        </div>
+        <div class="field-box" id="field-BasketCalcio">
+          <h3>Basket/Calcio</h3>
+          <div class="slot-info" id="slots-BasketCalcio"></div>
+        </div>
+        <div class="field-box" id="field-Ping-pong">
+          <h3>Ping-pong</h3>
+          <div class="slot-info" id="slots-Ping-pong"></div>
+        </div>
+      </div>
 
-    <div id="date-selector">
-        <label for="month">Mese:</label>
-        <select id="month">
-            <option value="Gennaio">Gennaio</option>
-            <option value="Febbraio">Febbraio</option>
-            <option value="Marzo">Marzo</option>
-            <option value="Aprile">Aprile</option>
-            <option value="Maggio">Maggio</option>
-            <option value="Giugno">Giugno</option>
-            <option value="Luglio">Luglio</option>
-            <option value="Agosto">Agosto</option>
-            <option value="Settembre">Settembre</option>
-            <option value="Ottobre">Ottobre</option>
-            <option value="Novembre">Novembre</option>
-            <option value="Dicembre">Dicembre</option>
-        </select>
-
-        <label for="day">Giorno:</label>
-        <input type="number" id="day" min="1" max="31" value="1">
-        <button id="load-schedule">Carica Orario</button>
-
-        <!-- Navigazione tra giorni -->
-        <button id="prev-day">◀️ Giorno Precedente</button>
-        <button id="next-day">Giorno Successivo ▶️</button>
-    </div>
-
-    <div class="table-container">
-        <table id="schedule-table">
-            <thead>
-                <tr>
-                    <th>Ora</th>
-                    <!-- I lavoratori verranno aggiunti dinamicamente -->
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Le righe degli orari verranno generate dinamicamente -->
-            </tbody>
+      <!-- Sezione Admin -->
+      <div class="admin" id="admin-area">
+        <h2>Gestione Prenotazioni (Amministratore)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Data</th>
+              <th>Orario</th>
+              <th>Utente</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table"></tbody>
         </table>
-    </div>
 
-    <!-- Sezione Statistiche -->
-    <div id="statistics">
-        <h2>Statistiche</h2>
-        
-        <!-- Grafici -->
-        <div class="chart-container">
-            <canvas id="monthly-chart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="daily-chart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="weekly-chart"></canvas>
+        <!-- Sezione Note (solo Admin) -->
+        <div class="notes-container" id="notes-container">
+          <h2>Note (Visibili solo all'Admin)</h2>
+          <textarea id="admin-notes" rows="6" placeholder="Scrivi qui le tue note..."></textarea>
+          <br />
+          <button onclick="saveAdminNotes()">
+            <i class="fas fa-save"></i> Salva Note
+          </button>
         </div>
 
-        <!-- Tabelle delle Statistiche -->
-        <div id="monthly-stats">
-            <h3>Ore Lavorate per Mese</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Lavoratore</th>
-                        <th>Mese</th>
-                        <th>Ore Lavorate</th>
-                    </tr>
-                </thead>
-                <tbody id="monthly-stats-body">
-                    <!-- Statistiche mensili -->
-                </tbody>
-            </table>
-        </div>
+        <h2>Gestione Utenti</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Stato</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="credentials-table"></tbody>
+        </table>
+      </div>
+    </main>
+    <footer>
+      <p>© 2025 Prenotazione Campi - Tutti i diritti riservati</p>
+    </footer>
+  </div>
 
-        <div id="daily-stats">
-            <h3>Ore Lavorate per Giorno</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Lavoratore</th>
-                        <th>Giorno</th>
-                        <th>Ore Lavorate</th>
-                    </tr>
-                </thead>
-                <tbody id="daily-stats-body">
-                    <!-- Statistiche giornaliere -->
-                </tbody>
-            </table>
-        </div>
+  <!-- Contenitore per le Notifiche -->
+  <div id="notification-container"></div>
 
-        <div id="weekly-stats">
-            <h3>Ore Lavorate per Settimana</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Lavoratore</th>
-                        <th>Settimana</th>
-                        <th>Ore Lavorate</th>
-                    </tr>
-                </thead>
-                <tbody id="weekly-stats-body">
-                    <!-- Statistiche settimanali -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Inizializzazione di Firebase e Importazione dello Script -->
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyBM2mZO-aUpKY2_eI6RZ-owE32t950OK90",
-          authDomain: "orarip-afb20.firebaseapp.com",
-          projectId: "orarip-afb20",
-          storageBucket: "orarip-afb20.firebasestorage.app",
-          messagingSenderId: "565541237976",
-          appId: "1:565541237976:web:54d9385b678f8fb4de93ad",
-          measurementId: "G-VLXX8EF66K"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const analytics = firebase.analytics(); // Rimuovi questa linea se non utilizzi Analytics
-    </script>
-    <script src="script.js"></script>
+  <!-- Firebase 8.x Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <!-- Collega il file JS -->
+  <script src="script.js"></script>
 </body>
 </html>
