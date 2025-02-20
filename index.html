@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prenotazione Campi</title>
+
+  <!-- Font Awesome con SRI corretto per la versione 6.4.0 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Collega il file CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sezione di Accesso -->
+  <div id="access-area">
+    <div class="login-container">
+      <!-- Immagini (verranno caricate da Firestore) -->
+      <div id="login-images-container"></div>
+      
+      <!-- Form Admin/User -->
+      <div class="login-form">
+        <h1>Benvenuto</h1>
+
+        <!-- Bottoni per alternare Admin / User -->
+        <div style="margin-bottom: 15px;">
+          <button onclick="toggleAdminUser(true)">Admin</button>
+          <button onclick="toggleAdminUser(false)">User</button>
+        </div>
+
+        <!-- Form ADMIN LOGIN -->
+        <div id="admin-login-section" style="display: none;">
+          <p>Inserisci credenziali admin (chiave "admin" nel dictionary)</p>
+          <input type="text" id="admin-username" placeholder="Username admin">
+          <input type="password" id="admin-password" placeholder="Password admin">
+          <button onclick="adminLogin()">
+            <i class="fas fa-sign-in-alt"></i> Login Admin
+          </button>
+        </div>
+
+        <!-- Form USER LOGIN -->
+        <div id="user-login-section">
+          <p>
+            Inserisci email e telefono.<br>
+            Poi uno userXXX + password dal dictionary.
+          </p>
+          <input type="text" id="user-email" placeholder="Email">
+          <input type="text" id="user-phone" placeholder="Telefono">
+          <input type="text" id="user-username" placeholder="Username (es. user001)">
+          <input type="password" id="user-userpass" placeholder="Password">
+          <button onclick="userLoginDictionary()">
+            <i class="fas fa-door-open"></i> Entra
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sezione Applicazione (dopo login) -->
+  <div id="app-area">
+    <header>
+      <a href="#" class="logout" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+      <h1>Prenotazione Campi</h1>
+    </header>
+
+    <main>
+      <!-- NOTE (admin può modificare) -->
+      <section class="notes-section" id="notes-section">
+        <h2>Note</h2>
+        <p id="notes-content"></p>
+        <textarea id="admin-notes" rows="5" placeholder="Scrivi qui le tue note..."></textarea>
+        <button id="save-notes-btn" onclick="saveAdminNotes()">
+          <i class="fas fa-save"></i> Salva Note
+        </button>
+      </section>
+
+      <!-- Griglia Campi 2x2 -->
+      <div class="fields-container">
+        <div class="field-box" id="field-Volley1">
+          <h3>Volley1</h3>
+          <div class="slot-info" id="slots-Volley1"></div>
+        </div>
+        <div class="field-box" id="field-Volley2">
+          <h3>Volley2</h3>
+          <div class="slot-info" id="slots-Volley2"></div>
+        </div>
+        <div class="field-box" id="field-BasketCalcio">
+          <h3>Basket/Calcio</h3>
+          <div class="slot-info" id="slots-BasketCalcio"></div>
+        </div>
+        <div class="field-box" id="field-Ping-pong">
+          <h3>Ping-pong</h3>
+          <div class="slot-info" id="slots-Ping-pong"></div>
+        </div>
+      </div>
+
+      <!-- Sezione Admin (prenotazioni, registrations, gestione dictionary, immagini) -->
+      <div class="admin" id="admin-area">
+        <h2>Gestione Prenotazioni (Admin)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Data</th>
+              <th>Orario</th>
+              <th>Utente</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table"></tbody>
+        </table>
+
+        <h2>Elenco Dati Inseriti (registrations)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Telefono</th>
+              <th>User</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="registrations-table"></tbody>
+        </table>
+
+        <h2>Gestione Password (dictionary)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="dictionary-table"></tbody>
+        </table>
+
+        <h2>Gestione Immagini Login (max 10)</h2>
+        <div class="image-admin-form">
+          <div>
+            <label>Immagine 1 (URL):</label>
+            <input type="text" id="image1URL" placeholder="URL 1">
+            <label>Link 1:</label>
+            <input type="text" id="image1Link" placeholder="Link 1">
+          </div>
+          <div>
+            <label>Immagine 2 (URL):</label>
+            <input type="text" id="image2URL" placeholder="URL 2">
+            <label>Link 2:</label>
+            <input type="text" id="image2Link" placeholder="Link 2">
+          </div>
+          <div>
+            <label>Immagine 3 (URL):</label>
+            <input type="text" id="image3URL" placeholder="URL 3">
+            <label>Link 3:</label>
+            <input type="text" id="image3Link" placeholder="Link 3">
+          </div>
+          <div>
+            <label>Immagine 4 (URL):</label>
+            <input type="text" id="image4URL" placeholder="URL 4">
+            <label>Link 4:</label>
+            <input type="text" id="image4Link" placeholder="Link 4">
+          </div>
+          <div>
+            <label>Immagine 5 (URL):</label>
+            <input type="text" id="image5URL" placeholder="URL 5">
+            <label>Link 5:</label>
+            <input type="text" id="image5Link" placeholder="Link 5">
+          </div>
+          <div>
+            <label>Immagine 6 (URL):</label>
+            <input type="text" id="image6URL" placeholder="URL 6">
+            <label>Link 6:</label>
+            <input type="text" id="image6Link" placeholder="Link 6">
+          </div>
+          <div>
+            <label>Immagine 7 (URL):</label>
+            <input type="text" id="image7URL" placeholder="URL 7">
+            <label>Link 7:</label>
+            <input type="text" id="image7Link" placeholder="Link 7">
+          </div>
+          <div>
+            <label>Immagine 8 (URL):</label>
+            <input type="text" id="image8URL" placeholder="URL 8">
+            <label>Link 8:</label>
+            <input type="text" id="image8Link" placeholder="Link 8">
+          </div>
+          <div>
+            <label>Immagine 9 (URL):</label>
+            <input type="text" id="image9URL" placeholder="URL 9">
+            <label>Link 9:</label>
+            <input type="text" id="image9Link" placeholder="Link 9">
+          </div>
+          <div>
+            <label>Immagine 10 (URL):</label>
+            <input type="text" id="image10URL" placeholder="URL 10">
+            <label>Link 10:</label>
+            <input type="text" id="image10Link" placeholder="Link 10">
+          </div>
+
+          <button onclick="saveAdminImages()">
+            <i class="fas fa-save"></i> Salva Immagini
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Prenotazione Campi - Tutti i diritti riservati</p>
+    </footer>
+  </div>
+
+  <!-- Contenitore per Notifiche -->
+  <div id="notification-container"></div>
+
+  <!-- Firebase, script e CSS sono già inclusi in head/body -->
+  <!-- Tutti i codici sono nelle 3 parti (index, style, script). -->
+</body>
+</html>
