@@ -1,0 +1,405 @@
+/* Reset di base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --color-primary: #FF6F61; 
+  --color-secondary: #FFD93D;
+  --color-accent: #40C9A2; 
+  --color-bg: #FFFEE7; 
+  --color-text: #333333;
+  --color-white: #FFFFFF;
+  --color-overlay: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #FFEECC 0%, #FFDAC1 100%);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  user-select: none; 
+  overflow-x: hidden;
+}
+
+/* Consenti selezione negli input / textarea */
+input, textarea {
+  user-select: text;
+}
+
+/* Header */
+header {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+header h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-top: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+.logout {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.logout:hover {
+  color: var(--color-accent);
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Access area */
+#access-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--color-overlay);
+  padding: 40px 30px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+#access-area:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+#login-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#login-images-container img {
+  max-width: 80px;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.login-form h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+  text-align: center;
+}
+.login-form p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+.login-form input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.login-form button:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Notes */
+.notes-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+  padding: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.notes-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+.notes-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+#notes-content {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #444;
+  white-space: pre-wrap;
+}
+#admin-notes {
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px;
+  border: 2px solid var(--color-primary);
+  border-radius: 6px;
+  resize: vertical;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+  display: none;
+}
+#save-notes-btn {
+  display: none;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 6px;
+  padding: 10px 15px;
+}
+
+/* Griglia campi 2x2 */
+.fields-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+.field-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.field-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.field-box h3 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.slot-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.slot {
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.available {
+  background-color: #fdf5e6;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.available:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+.unavailable {
+  background-color: #ffc9c9;
+  color: #f34e4e;
+  border: 2px solid #f34e4e;
+  cursor: not-allowed;
+}
+.my-booking {
+  background-color: #fff9c4;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.my-booking:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+.cancel-btn {
+  margin-top: 15px;
+  background: #FF5252;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+.cancel-btn:hover {
+  background: #FF1744;
+  transform: translateY(-2px);
+}
+
+/* Admin section */
+.admin {
+  display: none;
+  margin-top: 40px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.admin:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.admin h2 {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table, th, td {
+  border: 1px solid #eee;
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+th {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+tbody tr:nth-child(even) {
+  background-color: #FFFDE7;
+}
+tbody tr:hover {
+  background-color: #FFF9C4;
+}
+button {
+  padding: 6px 10px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Immagini Admin form */
+.image-admin-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.image-admin-form label {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 15px;
+  margin-top: auto;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+footer p {
+  font-size: 1rem;
+}
+
+/* Notifiche */
+#notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+.notification {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein {
+  from { opacity: 0; right: 0; }
+  to { opacity: 1; right: 20px; }
+}
+@keyframes fadeout {
+  from { opacity: 1; right: 20px; }
+  to { opacity: 0; right: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #access-area {
+    padding: 20px;
+    box-shadow: none;
+    transform: none;
+  }
+  .login-container {
+    max-width: 100%;
+  }
+  .fields-container {
+    grid-template-columns: 1fr;
+  }
+  .slot-info {
+    flex-direction: column;
+  }
+  .slot {
+    width: 100%;
+  }
+}
