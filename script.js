@@ -26,14 +26,13 @@ document.addEventListener('keydown', (event) => {
  *****************************************/
 // Usa i dati che hai postato, ad esempio:
 const firebaseConfig = {
-  apiKey: "AIzaSyBM2mZO-aUpKY2_eI6RZ-owE32t950OK90",
-  authDomain: "orarip-afb20.firebaseapp.com",
-  databaseURL: "https://orarip-afb20-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "orarip-afb20",
-  storageBucket: "orarip-afb20.firebasestorage.app",
-  messagingSenderId: "565541237976",
-  appId: "1:565541237976:web:54d9385b678f8fb4de93ad",
-  measurementId: "G-VLXX8EF66K"
+ apiKey: "AIzaSyDYACM87SGSMgEb6hdG_08zufK7jvjf-rA",
+  authDomain: "nuovo-campi1.firebaseapp.com",
+  projectId: "nuovo-campi1",
+  storageBucket: "nuovo-campi1.firebasestorage.app",
+  messagingSenderId: "705263020150",
+  appId: "1:705263020150:web:dfc39025eb3813df231757",
+  measurementId: "G-YH6WS0TZZN"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
