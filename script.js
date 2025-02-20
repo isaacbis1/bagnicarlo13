@@ -23,21 +23,27 @@ document.addEventListener('keydown', (event) => {
 /***********************
  *  CONFIGURAZIONE FIREBASE
  ***********************/
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  // Sostituisci con le tue credenziali Firebase
-  apiKey: "AIzaSyBM2mZO-aUpKY2_eI6RZ-owE32t950OK90",
-  authDomain: "orarip-afb20.firebaseapp.com",
-  databaseURL: "https://orarip-afb20-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "orarip-afb20",
-  storageBucket: "orarip-afb20.firebasestorage.app",
-  messagingSenderId: "565541237976",
-  appId: "1:565541237976:web:54d9385b678f8fb4de93ad",
-  measurementId: "G-VLXX8EF66K"
+  apiKey: "AIzaSyCSc8mmc1Kpe5Zt6ecFN9X0UqhJkXdItt0",
+  authDomain: "campi-finale.firebaseapp.com",
+  projectId: "campi-finale",
+  storageBucket: "campi-finale.firebasestorage.app",
+  messagingSenderId: "591857565250",
+  appId: "1:591857565250:web:838d34afe090e840e377db",
+  measurementId: "G-K0FY33VL8N"
 };
 
-// Inizializzazione Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 /***********************
  *  VARIABILI GLOBALI
