@@ -1,10 +1,5 @@
 
 /*****************************************
- *  CONFIGURAZIONE FIREBASE
- *****************************************/
-// Sostituisci con le TUE credenziali
-const firebaseConfig = {
-/*****************************************
  * DISABILITA TASTO DESTRO E SCORCIATOIE
  *****************************************/
 document.addEventListener('contextmenu', (event) => event.preventDefault());
