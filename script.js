@@ -32,19 +32,19 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCSc8mmc1Kpe5Zt6ecFN9X0UqhJkXdItt0",
-  authDomain: "campi-finale.firebaseapp.com",
-  projectId: "campi-finale",
-  storageBucket: "campi-finale.firebasestorage.app",
-  messagingSenderId: "591857565250",
-  appId: "1:591857565250:web:838d34afe090e840e377db",
-  measurementId: "G-K0FY33VL8N"
+  apiKey: "AIzaSyBivERuJvrO947t2Idv8DM3gZyfuqEQahw",
+  authDomain: "campi-414b4.firebaseapp.com",
+  databaseURL: "https://campi-414b4-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "campi-414b4",
+  storageBucket: "campi-414b4.firebasestorage.app",
+  messagingSenderId: "985324700492",
+  appId: "1:985324700492:web:b8cb569e83bb2e24ed85e9",
+  measurementId: "G-3W0ZKB4S5Q"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
 /***********************
  *  VARIABILI GLOBALI
  ***********************/
