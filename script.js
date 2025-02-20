@@ -25,13 +25,14 @@ document.addEventListener('keydown', (event) => {
  ***********************/
 const firebaseConfig = {
   // Sostituisci con le tue credenziali Firebase
-  apiKey: "AIzaSyBivERu...",
-  authDomain: "campi-414b4.firebaseapp.com",
-  projectId: "campi-414b4",
-  storageBucket: "campi-414b4.firebasestorage.app",
-  messagingSenderId: "985324700492",
-  appId: "1:985324700492:web:b8cb569e83bb2e24ed85e9",
-  measurementId: "G-3W0ZKB4S5Q"
+  apiKey: "AIzaSyBM2mZO-aUpKY2_eI6RZ-owE32t950OK90",
+  authDomain: "orarip-afb20.firebaseapp.com",
+  databaseURL: "https://orarip-afb20-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "orarip-afb20",
+  storageBucket: "orarip-afb20.firebasestorage.app",
+  messagingSenderId: "565541237976",
+  appId: "1:565541237976:web:54d9385b678f8fb4de93ad",
+  measurementId: "G-VLXX8EF66K"
 };
 
 // Inizializzazione Firebase
