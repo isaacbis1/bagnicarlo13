@@ -5,34 +5,43 @@
   padding: 0;
 }
 
-/* Import del font Poppins */
+/* Import del font Poppins (o qualsiasi altro font gradito) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* Palette colori “estiva-futuristica” */
+/* Variabili CSS per la palette di colori “estiva-futuristica” */
 :root {
-  --color-primary: #FF6F61; /* Rosso/arancione pastello */
+  --color-primary: #FF6F61; /* Rosso pastello-aranciato */
   --color-secondary: #FFD93D; /* Giallo luminoso */
   --color-accent: #40C9A2; /* Turchese/Verde acqua */
-  --color-bg: #FFFEE7; /* Giallo pastello */
+  --color-bg: #FFFEE7; /* Giallino pastello chiarissimo */
   --color-text: #333333;
   --color-white: #FFFFFF;
   --color-overlay: rgba(255, 255, 255, 0.2);
 }
 
-/* Corpo della pagina */
+/* Impedisce la selezione del testo in tutto il body */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #FFEECC, #FFDAC1);
+  background: linear-gradient(135deg, #FFEECC 0%, #FFDAC1 100%);
   color: var(--color-text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   transition: background 0.3s ease;
-  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+  overflow-x: hidden;
 }
 
-/* Consenti selezione solo su input e textarea */
+/* Consenti la selezione negli input e textarea, in caso serva compilare o copiare da lì */
 input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
   user-select: text;
 }
 
@@ -51,6 +60,7 @@ header {
 header h1 {
   font-size: 2.3rem;
   font-weight: 700;
+  letter-spacing: 1px;
   margin-top: 10px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
@@ -75,6 +85,7 @@ main {
   padding: 30px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* Sezione Login */
@@ -86,6 +97,7 @@ main {
   background: var(--color-overlay);
   padding: 40px 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 #login-area:hover {
@@ -100,9 +112,9 @@ main {
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   padding: 20px;
-  margin: 10px;
 }
 
+/* RIGA IMMAGINI DEL LOGIN */
 #login-images-container {
   display: flex;
   flex-wrap: wrap;
@@ -120,6 +132,7 @@ main {
 
 .login-form {
   text-align: center;
+  margin-top: 10px;
 }
 
 .login-form h1 {
@@ -171,13 +184,14 @@ main {
   transform: translateY(-2px);
 }
 
-/* Sezione Note */
+/* Sezione NOTE visibili a tutti */
 .notes-section {
   background: var(--color-white);
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   margin-bottom: 40px;
   padding: 25px;
+  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -197,9 +211,10 @@ main {
   font-size: 1rem;
   margin-bottom: 15px;
   color: #444;
-  white-space: pre-wrap;
+  white-space: pre-wrap; /* conserva i ritorni a capo */
 }
 
+/* Textarea delle note, di default nascosta (visibile solo a admin via JS) */
 #admin-notes {
   width: 100%;
   font-size: 1rem;
@@ -209,7 +224,7 @@ main {
   resize: vertical;
   margin-bottom: 10px;
   transition: border-color 0.3s ease;
-  display: none;
+  display: none; /* Nascosto di default, lo mostriamo solo all'admin */
 }
 
 #admin-notes:focus {
@@ -217,28 +232,11 @@ main {
   outline: none;
 }
 
-#save-notes-btn {
-  background: var(--color-secondary);
-  color: var(--color-primary);
-  border: none;
-  border-radius: 6px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  display: none;
-}
-
-#save-notes-btn:hover {
-  background: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-/* Sezione Campi */
+/* Sezione Campi - Grid 2x2 */
 .fields-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 30px;
-  margin-bottom: 40px;
 }
 
 .field-box {
@@ -328,7 +326,7 @@ main {
 
 /* Sezione Admin */
 .admin {
-  display: none;
+  display: none; /* Nascosta se non sei admin */
   margin-top: 40px;
   background: var(--color-white);
   padding: 25px;
