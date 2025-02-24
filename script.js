@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Integrazione con Stripe
 // Configura Stripe con la tua chiave pubblica
-const stripe = Stripe("LA_TUA_STRIPE_PUBLIC_KEY");
+const stripe = Stripe(pk_test_51Qw6dt08s8WI1s2CzyMymOqVis43RXBwTgMkKvWa2FydPtqUT55ibhl9iyd5435mNrY80pHr6N7AR2koOho5zbTW007ZHTtUYZ);
 
 // Assicura che il bottone funzioni solo dopo il caricamento della pagina
 document.addEventListener("DOMContentLoaded", function () {
