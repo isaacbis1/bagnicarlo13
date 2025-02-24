@@ -963,7 +963,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Integrazione con Stripe
-const stripe = Stripe("LA_TUA_STRIPE_PUBLIC_KEY");
+const stripe = Stripe("https://book.stripe.com/test_3cs9By226a5W62seUU");
 
 // Funzione per avviare il pagamento e prenotare
 async function pagaPrenotazione() {
